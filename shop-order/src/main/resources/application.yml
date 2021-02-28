@@ -22,6 +22,8 @@ spring:
       transport:
         dashboard: 127.0.0.1:8080  #监控台
         port: 1111  #跟控制台交流的端口
+#      filter:
+#        enabled: false  #关闭sentinel的CommonFilter实例化
 
 #mybatis Plus\u914D\u7F6E
 mybatis-plus:

@@ -1,5 +1,6 @@
 package com.huatech.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.huatech.entity.Order;
 import com.huatech.entity.Product;
 import com.huatech.feign.ProductFeign;
@@ -24,9 +25,6 @@ public class OrderController {
     private IOrderService orderService;
 
     @Resource
-    private RestTemplate restTemplate;
-
-    @Resource
     private ProductFeign productFeign;
 
     @RequestMapping("buy/{pId}")
@@ -45,5 +43,10 @@ public class OrderController {
     @RequestMapping("test")
     public String test() {
         return "测试高并发！";
+    }
+    @RequestMapping("test1")
+    @SentinelResource("message-test")//注意这里必须使用这个注解标识,热点规则不生效
+    public String message3(String name, Integer age) {
+        return name + age;
     }
 }
