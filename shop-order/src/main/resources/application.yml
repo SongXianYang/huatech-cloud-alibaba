@@ -1,7 +1,9 @@
 #\u7AEF\u53E3
 server:
   port: 9091
-
+#设置tomcat 最大线程树
+  tomcat:
+    max-threads: 5
 #\u6570\u636E\u5E93\u914D\u7F6E
 spring:
   application:
@@ -12,6 +14,15 @@ spring:
     username: root
     password: root#123
     type: com.alibaba.druid.pool.DruidDataSource
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 #nacos
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080  #监控台
+        port: 1111  #跟控制台交流的端口
+
 #mybatis Plus\u914D\u7F6E
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
