@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
-
 /**
  * @description: 商品控制层
  * @author: SongXY
@@ -17,8 +15,11 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("product")
 public class ProductController {
-    @Resource
     private IProductService productService;
+
+    public ProductController(IProductService productService) {
+        this.productService = productService;
+    }
 
     @RequestMapping(value = "findById/{id}", method = RequestMethod.GET)
     public Product findById(@PathVariable("id") int id) {
