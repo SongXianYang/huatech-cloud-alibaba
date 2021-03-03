@@ -2,7 +2,6 @@ package com.huatech.config;
 
 import com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.RequestOriginParser;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.stereotype.Component;
 
 
 import javax.servlet.http.HttpServletRequest;
