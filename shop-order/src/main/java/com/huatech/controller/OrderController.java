@@ -1,12 +1,14 @@
 package com.huatech.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.fastjson.JSON;
 import com.huatech.entity.Order;
 import com.huatech.entity.Product;
 import com.huatech.feign.ProductFeign;
 import com.huatech.sentinelResource.OrderControllerBlockHandler;
 import com.huatech.sentinelResource.OrderControllerFallback;
 import com.huatech.service.IOrderService;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,16 +30,12 @@ public class OrderController {
     @Resource
     private ProductFeign productFeign;
 
+    @Resource
+    private RocketMQTemplate rocketMQTemplate;
+
     @RequestMapping("buy/{pId}")
     public Order insert(@PathVariable("pId") int pId) {
         Product product = productFeign.findById(pId);
-        if (product.getId() == -1000) {
-            Order order = new Order();
-            order.setPId(product.getId());
-            order.setPName(product.getName());
-            order.setPPrice(product.getPrice());
-            return order;
-        }
         Order order = new Order();
         order.setNumber(1);
         order.setPId(product.getId());
@@ -46,6 +44,11 @@ public class OrderController {
         order.setUId(1);
         order.setUsername("宋先阳");
         orderService.insert(order);
+        //下单成功之后，将order的信息放进mq中
+        //参数1，指定topic
+        //参数2：消息体
+        rocketMQTemplate.convertAndSend("order-topic", order);
+
         return order;
     }
 

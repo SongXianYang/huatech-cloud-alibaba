@@ -4,6 +4,11 @@ server:
 
 #\u6570\u636E\u5E93\u914D\u7F6E
 spring:
+  #nacos 配置
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
   application:
     name: shop-user
   datasource:
@@ -18,3 +23,7 @@ mybatis-plus:
 #\u6253\u5370\u65E5\u5FD7
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+rocketmq:
+  name-server: 127.0.0.1:9876
+

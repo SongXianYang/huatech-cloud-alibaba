@@ -36,7 +36,10 @@ mybatis-plus:
   #\u6253\u5370\u65E5\u5FD7
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  #打印mybatis plus 日志
-#feign:
+#feign: 整合feign失败！
 #  sentinel:
 #    enabled: true
-
+rocketmq:
+  name-server: 127.0.0.1:9876 #rocketMQ服务的地址
+  producer:
+    group: shop-order # 生产者组
