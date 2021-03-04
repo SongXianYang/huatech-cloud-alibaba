@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: user-shop
+  cloud:
+    nacos:
+      config:
+        file-extension: yaml #配置文件格式
+        server-addr: 127.0.0.1:8848 #nacos中心地址
+        shared-dataids: config-all.yaml #全局配置引入
+        refreshable-dataids: config-all.yaml #动态配置的刷新配置刷新
+  profiles:
+    active: dev #标识环境
