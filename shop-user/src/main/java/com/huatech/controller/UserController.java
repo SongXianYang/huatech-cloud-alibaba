@@ -2,12 +2,13 @@ package com.huatech.controller;
 
 import com.huatech.entity.User;
 import com.huatech.service.IUserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.List;
 @RestController
 @RefreshScope//只需要在需要动态读取配置的类上添加此注解就可以
 @RequestMapping("user")
+@Api(tags = "用户模块的相关接口")
 public class UserController {
     @Resource
     IUserService userService;
@@ -31,15 +33,65 @@ public class UserController {
     private String env;
 
     @RequestMapping(value = "finds", method = RequestMethod.GET)
+    @ApiOperation("查询用户集合")
     public List<User> finds() {
         return userService.finds();
     }
+
     @GetMapping("name")
+    @ApiOperation("获取配置文件的内容")
     public String getName() {
         return name;
     }
+
     @GetMapping("evn")
+    @ApiOperation("获取配置文件的内容")
     public String getEvn() {
         return env;
+    }
+
+    @GetMapping("selectUserIdAndUserName")
+    @ApiOperation("根据两个参数来确定一个用户")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "int"),
+            @ApiImplicitParam(name = "name", value = "用户名", required = true, dataType = "String")
+
+    })
+    public User selectUserIdAndUserName(@RequestParam("id") int id, @RequestParam("name") String name) {
+        return userService.selectUserIdAndUserName(id, name);
+    }
+
+    @GetMapping("updateUser")
+    @ApiOperation("修改指定用户名")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "name", value = "用户名", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "int")
+    })
+    public String updateUser(@RequestParam("name") String name, @RequestParam("id") int id) {
+        int i = userService.updateUser(name, id);
+        if (i < 0) {
+            return "更新失败！";
+        }
+        return "更新成功";
+    }
+    @GetMapping("UserIds")
+    @ApiOperation("查询用户集合")
+    public List<User> UserIds() {
+        return userService.UserIds();
+    }
+    @PostMapping("insert")
+    @ApiOperation("插入用户")
+    public String insert(@RequestBody User user) {
+        return userService.insert(user);
+    }
+    @PostMapping("update")
+    @ApiOperation("更新用户")
+    public String update(@RequestBody User user) {
+        return userService.update(user);
+    }
+    @DeleteMapping("delete")
+    @ApiOperation("删除用户")
+    public String deleteIds(@RequestParam(value = "ids",required = false) List<Integer> ids) {
+        return userService.deleteIds(ids);
     }
 }

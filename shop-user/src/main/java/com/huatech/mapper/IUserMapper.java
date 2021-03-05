@@ -3,6 +3,9 @@ package com.huatech.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.huatech.entity.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @description: 用户持久层mapper
@@ -11,4 +14,10 @@ import org.apache.ibatis.annotations.Mapper;
  **/
 @Mapper
 public interface IUserMapper extends BaseMapper<User> {
+    User selectUserIdAndUserName(@Param("id") int id, @Param("name") String name);
+
+    int  updateUser(@Param("name") String name ,@Param ("id") int id);
+
+    List<User> UserIds(@Param("ids") List<Integer> ids);
+
 }

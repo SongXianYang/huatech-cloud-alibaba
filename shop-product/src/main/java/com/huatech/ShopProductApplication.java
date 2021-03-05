@@ -9,6 +9,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @SpringBootApplication
 @EnableDiscoveryClient
 @MapperScan("com.huatech.mapper")
+
 public class ShopProductApplication {
 
     public static void main(String[] args) {

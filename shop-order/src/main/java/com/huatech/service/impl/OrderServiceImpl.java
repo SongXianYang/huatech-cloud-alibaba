@@ -33,7 +33,7 @@ public class OrderServiceImpl implements IOrderService {
     public Order insert(int pId) {
         Product product = productFeign.findById(pId);
         Order order = new Order();
-        order.setNumber(1010);
+        order.setNumber(1);
         order.setPId(product.getId());
         order.setPName(product.getName());
         order.setPPrice(product.getPrice());

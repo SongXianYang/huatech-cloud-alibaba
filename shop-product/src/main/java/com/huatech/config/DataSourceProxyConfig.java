@@ -13,8 +13,8 @@ import org.springframework.context.annotation.Primary;
  * @author: SongXY
  * @create: 2021-03-04 17:05
  **/
-//@Configuration
-//public class DataSourceProxyConfig {
+@Configuration
+public class DataSourceProxyConfig {
 //    @Bean
 //    @ConfigurationProperties(prefix = "spring.datasource")
 //    public DruidDataSource druidDataSource() {
@@ -25,4 +25,4 @@ import org.springframework.context.annotation.Primary;
 //    public DataSourceProxy dataSource(DruidDataSource druidDataSource) {
 //        return new DataSourceProxy(druidDataSource);
 //    }
-//}
+}
