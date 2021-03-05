@@ -14,4 +14,12 @@ public interface IProductService {
      * @param id
      */
     Product findById(int id);
+
+    /**
+     * 扣减库存
+     * @param pId
+     * @param number
+     */
+    void insertStock(int pId, Integer number);
+
 }

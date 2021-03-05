@@ -10,7 +10,7 @@ import com.huatech.entity.Order;
 public interface IOrderService {
     /**
      * 下单
-     * @param order
+     * @param pId
      */
-    void insert(Order order);
+    Order insert(int pId);
 }

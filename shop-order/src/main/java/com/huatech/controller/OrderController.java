@@ -27,29 +27,9 @@ public class OrderController {
     @Resource
     private IOrderService orderService;
 
-    @Resource
-    private ProductFeign productFeign;
-
-    @Resource
-    private RocketMQTemplate rocketMQTemplate;
-
     @RequestMapping("buy/{pId}")
     public Order insert(@PathVariable("pId") int pId) {
-        Product product = productFeign.findById(pId);
-        Order order = new Order();
-        order.setNumber(1);
-        order.setPId(product.getId());
-        order.setPName(product.getName());
-        order.setPPrice(product.getPrice());
-        order.setUId(1);
-        order.setUsername("宋先阳");
-        orderService.insert(order);
-        //下单成功之后，将order的信息放进mq中
-        //参数1，指定topic
-        //参数2：消息体
-        rocketMQTemplate.convertAndSend("order-topic", order);
-
-        return order;
+        return orderService.insert(pId);
     }
 
     @RequestMapping("test")

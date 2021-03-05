@@ -2,10 +2,9 @@ package com.huatech.controller;
 
 import com.huatech.entity.Product;
 import com.huatech.service.IProductService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /**
  * @description: 商品控制层
@@ -15,14 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("product")
 public class ProductController {
+    @Resource
     private IProductService productService;
 
-    public ProductController(IProductService productService) {
-        this.productService = productService;
-    }
 
     @RequestMapping(value = "findById/{id}", method = RequestMethod.GET)
     public Product findById(@PathVariable("id") int id) {
         return productService.findById(id);
+    }
+
+    @RequestMapping(value = "DeductionStock",method = RequestMethod.GET)
+    public void DeductionStock(@RequestParam("pId") int pId,@RequestParam("number") Integer number) {
+        productService.insertStock(pId, number);
     }
 }

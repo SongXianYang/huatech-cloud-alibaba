@@ -10,8 +10,8 @@ spring:
   sleuth:
     sampler:
       probability: 1.0 #采样的百分比 0.1--1.0
-  application:
-    name: shop-product
+#  application:
+#    name: shop-product
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/shop?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8

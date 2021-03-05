@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableDiscoveryClient//开启nacos
 @EnableFeignClients//开启Feign
 @MapperScan("com.huatech.mapper")
+
 public class ShopOrderApplication {
 
     public static void main(String[] args) {

@@ -1,5 +1,7 @@
 package com.huatech.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.huatech.entity.Product;
 import com.huatech.mapper.IProductMapper;
 import com.huatech.service.IProductService;
@@ -23,5 +25,15 @@ public class ProductServiceImpl implements IProductService {
     public Product findById(int id) {
         log.info("调用了商品的id={}",id);
         return productMapper.selectById(id);
+    }
+
+    @Override
+    public void insertStock(int pId, Integer number) {
+        Product product = productMapper.selectById(pId);
+        product.setStock(product.getStock()-number);
+        if (product.getStock() < number) {
+            throw new RuntimeException("库存不足");
+        }
+        productMapper.updateById(product );
     }
 }
