@@ -1,6 +1,7 @@
 package com.huatech.service;
 
 import com.huatech.entity.Product;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @description: 服务层
@@ -20,6 +21,7 @@ public interface IProductService {
      * @param pId
      * @param number
      */
+    @Transactional
     void insertStock(int pId, Integer number);
 
 }

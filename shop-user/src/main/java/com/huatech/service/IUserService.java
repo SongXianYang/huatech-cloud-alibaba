@@ -1,7 +1,7 @@
 package com.huatech.service;
 
 import com.huatech.entity.User;
-import org.apache.ibatis.annotations.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,14 +18,13 @@ public interface IUserService {
     List<User> finds();
 
     User selectUserIdAndUserName(int id,String name);
-
     int updateUser(String name , int id);
 
     List<User> UserIds();
-
+    @Transactional
     String insert(User user);
-
+    @Transactional
     String update(User user);
-
+    @Transactional
     String deleteIds(List<Integer> ids);
 }

@@ -1,6 +1,7 @@
 package com.huatech.service.impl;
 
 
+import com.huatech.annotation.Log;
 import com.huatech.entity.User;
 import com.huatech.mapper.IUserMapper;
 import com.huatech.service.IUserService;

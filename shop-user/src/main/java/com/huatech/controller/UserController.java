@@ -1,5 +1,6 @@
 package com.huatech.controller;
 
+import com.huatech.annotation.Log;
 import com.huatech.entity.User;
 import com.huatech.service.IUserService;
 import io.swagger.annotations.Api;
@@ -74,24 +75,36 @@ public class UserController {
         }
         return "更新成功";
     }
+
     @GetMapping("UserIds")
     @ApiOperation("查询用户集合")
     public List<User> UserIds() {
         return userService.UserIds();
     }
+
     @PostMapping("insert")
     @ApiOperation("插入用户")
     public String insert(@RequestBody User user) {
         return userService.insert(user);
     }
+
     @PostMapping("update")
     @ApiOperation("更新用户")
     public String update(@RequestBody User user) {
         return userService.update(user);
     }
+
     @DeleteMapping("delete")
     @ApiOperation("删除用户")
-    public String deleteIds(@RequestParam(value = "ids",required = false) List<Integer> ids) {
+    public String deleteIds(@RequestParam(value = "ids", required = false) List<Integer> ids) {
         return userService.deleteIds(ids);
+    }
+
+    @GetMapping("log")
+    @ApiOperation("测试自定义注解")
+    @Log(name = "#name",id = "#id",operation = "保存")
+    public String log(int id,int name) {
+        String s = "ceshi";
+        return s;
     }
 }

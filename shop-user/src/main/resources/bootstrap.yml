@@ -10,3 +10,5 @@ spring:
 #        refreshable-dataids: config-all.yaml #动态配置的刷新配置刷新
   profiles:
     active: dev #标识环境
+  aop:
+    auto: true
