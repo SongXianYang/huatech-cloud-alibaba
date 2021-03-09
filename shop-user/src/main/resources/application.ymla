@@ -27,3 +27,8 @@
 #rocketmq:
 #  name-server: 127.0.0.1:9876
 #
+logging:
+  level: warn
+  com.huatech.mapper: trace
+  pattern:
+    console: '%p%m%n'

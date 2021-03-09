@@ -1,8 +1,6 @@
 package com.huatech.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -13,12 +11,11 @@ import java.util.Date;
  * 员工实体类
  * @author SongXianYang
  */
-@ApiModel(value = "订单信息的实体属性")
+@ApiModel(value = "员工信息的实体属性")
 @TableName(value = "person")
 @Data
 public class Person {
     @ApiModelProperty("id")
-    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
     @ApiModelProperty("名称")
     private String name;
@@ -28,12 +25,17 @@ public class Person {
     private String email;
     @ApiModelProperty("父级id")
     private Long managerId;
-    @ApiModelProperty("创建事件")
+    @ApiModelProperty(value = "创建时间",hidden = true)
+    @TableField(fill = FieldFill.INSERT)
     private Date createTime;
-    @ApiModelProperty("修改事件")
+    @ApiModelProperty(value = "修改时间" ,hidden = true)
+    @TableField(fill = FieldFill.UPDATE)
     private Date updateTime;
-    @ApiModelProperty("版本")
+    @ApiModelProperty(value = "版本",hidden = false)
     private Integer version;
-    @ApiModelProperty("逻辑删除标识")
+    @ApiModelProperty(value = "逻辑删除标识",hidden = true)
+    @TableLogic
+    @TableField(select = false) //查询时不展示该字段
     private Integer deleted;
+
 }
