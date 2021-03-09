@@ -102,7 +102,7 @@ public class UserController {
 
     @GetMapping("log")
     @ApiOperation("测试自定义注解")
-    @Log(name = "#name",id = "#id",operation = "保存")
+    @Log(name = "user",id = "#id",operation = "保存")
     public String log(int id,int name) {
         String s = "ceshi";
         return s;
