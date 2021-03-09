@@ -31,7 +31,8 @@ public class Person {
     @ApiModelProperty(value = "修改时间" ,hidden = true)
     @TableField(fill = FieldFill.UPDATE)
     private Date updateTime;
-    @ApiModelProperty(value = "版本",hidden = false)
+    @ApiModelProperty(value = "版本",hidden = true)
+    @Version
     private Integer version;
     @ApiModelProperty(value = "逻辑删除标识",hidden = true)
     @TableLogic

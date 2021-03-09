@@ -21,18 +21,25 @@ public class SwaggerConfig {
     @Bean
     public Docket docket(){
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo()) //这个方法的作用（生成接口的时候页面显示的信息）
-                .select()  //表示的是选择那些路径和API生成文档
-                .apis(RequestHandlerSelectors.basePackage("com.huatech.controller")) //告诉他要扫描的接口存在的这个包
-                .paths(PathSelectors.any())  //对所有的API进行监控
+                //这个方法的作用（生成接口的时候页面显示的信息）
+                .apiInfo(apiInfo())
+                //表示的是选择那些路径和API生成文档
+                .select()
+                //告诉他要扫描的接口存在的这个包
+                .apis(RequestHandlerSelectors.basePackage("com.huatech.controller"))
+                //对所有的API进行监控
+                .paths(PathSelectors.any())
                 .build();  //构建
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("用户管理")    //文档的标题
-                .description("用户微服务接口文档")  //文档的描述
-                .version("1.0")  //版本
+                //文档的标题
+                .title("用户管理")
+                //文档的描述
+                .description("用户微服务接口文档")
+                //版本
+                .version("1.0")
                 .build();
     }
 }

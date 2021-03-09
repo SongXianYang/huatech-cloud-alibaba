@@ -47,7 +47,7 @@ public class PersonController {
     }
     @PutMapping("updateById")
     @ApiOperation("更新员工")
-    public String updateById(@RequestBody Person person) {
+    public String updateById(Person person) {
         return personService.updateById(person);
     }
     @PutMapping("insertPerson")

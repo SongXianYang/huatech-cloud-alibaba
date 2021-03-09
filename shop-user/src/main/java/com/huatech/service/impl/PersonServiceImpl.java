@@ -34,6 +34,11 @@ public class PersonServiceImpl implements IPersonService {
 
     @Override
     public String updateById(Person person) {
+        //获取除传过来的员工 version
+        Person person1 = personMapper.selectById(person.getId());
+        Integer version = person1.getVersion();
+        person.setVersion(version);
+
         int result = personMapper.updateById(person);
         if (result > 0) {
             return "update success";
