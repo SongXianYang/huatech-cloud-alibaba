@@ -102,9 +102,23 @@ public class UserController {
 
     @GetMapping("log")
     @ApiOperation("测试自定义注解")
-    @Log(name = "user",id = "#id",operation = "保存")
-    public String log(int id,int name) {
+    @Log(name = "user", id = "#id", operation = "保存")
+    public String log(int id, int name) {
         String s = "ceshi";
         return s;
+    }
+
+    @GetMapping("save")
+    @ApiOperation("测试更新时间")
+    public String save(int id) {
+        try {
+           int i= userService.saveTime(id);
+            if (i > 0) {
+                return "更新成功";
+            }
+            return "失败";
+        } catch (Exception e) {
+            throw e;
+        }
     }
 }

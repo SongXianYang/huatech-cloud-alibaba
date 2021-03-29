@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @description: 用户实体
@@ -20,10 +21,10 @@ import java.io.Serializable;
 @ApiModel(value = "用户实体属性")
 public class User implements Serializable {
     /**
-    * 用户id
-    */
+     * 用户id
+     */
     @ApiModelProperty("用户id")
-    @TableId(value = "id",type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
     /**
      * 用户名称
@@ -40,4 +41,7 @@ public class User implements Serializable {
      */
     @ApiModelProperty("用户手机号")
     private String telephone;
+
+    @ApiModelProperty("更新时间")
+    private Date modifyTime;
 }

@@ -79,4 +79,9 @@ public class UserServiceImpl implements IUserService {
         }
         return "删除成功";
     }
+
+    @Override
+    public int saveTime(int id) {
+        return userMapper.saveTime(id);
+    }
 }

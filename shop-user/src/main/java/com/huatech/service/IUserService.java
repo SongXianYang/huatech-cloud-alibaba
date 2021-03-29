@@ -27,4 +27,6 @@ public interface IUserService {
     String update(User user);
     @Transactional
     String deleteIds(List<Integer> ids);
+
+    int saveTime(int id);
 }

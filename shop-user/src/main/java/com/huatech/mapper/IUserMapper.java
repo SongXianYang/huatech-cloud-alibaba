@@ -20,4 +20,6 @@ public interface IUserMapper extends BaseMapper<User> {
 
     List<User> UserIds(@Param("ids") List<Integer> ids);
 
+
+    int  saveTime(@Param("id") int id);
 }

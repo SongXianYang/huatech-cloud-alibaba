@@ -22,6 +22,9 @@
         </set>
         where id= #{id}
     </update>
+    <update id="saveTime">
+        update shop_user set modify_time=now() where id=#{id}
+    </update>
     <select id="UserIds" resultType="com.huatech.entity.User">
         select * from shop_user where
         <if test="ids !=null">
