@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ import java.util.List;
  * @author: SongXY
  * @create: 2021-02-27 16:43
  **/
+@Log4j2
 @RestController
 @RefreshScope//只需要在需要动态读取配置的类上添加此注解就可以
 @RequestMapping("user")
@@ -118,6 +120,8 @@ public class UserController {
             }
             return "失败";
         } catch (Exception e) {
+            log.info("save: ");
+            log.error("save: ", e);
             throw e;
         }
     }

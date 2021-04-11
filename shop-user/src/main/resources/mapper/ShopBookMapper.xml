@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huatech.mapper.ShopBookMapper">
+    <resultMap id="BaseResultMap" type="com.huatech.entity.ShopBook">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="book_name" jdbcType="VARCHAR" property="bookName"/>
+        <result column="book_author" jdbcType="VARCHAR" property="bookAuthor"/>
+        <result column="book_money" jdbcType="DOUBLE" property="bookMoney"/>
+        <result column="is_del" jdbcType="VARCHAR" property="isDel"/>
+        <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy"/>
+        <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime"/>
+        <result column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy"/>
+        <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.huatech.entity.ShopBook">
+        <result column="user_id" jdbcType="LONGVARCHAR" property="userId"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    id, book_name, book_author, book_money, is_del, CREATED_BY, CREATED_TIME, UPDATED_BY, 
+    UPDATED_TIME
+  </sql>
+    <sql id="Blob_Column_List">
+    user_id
+  </sql>
+    <select id="selectByExampleWithBLOBs" parameterType="com.huatech.entity.ShopBookExample"
+            resultMap="ResultMapWithBLOBs">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from shop_book
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByExample" parameterType="com.huatech.entity.ShopBookExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from shop_book
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from shop_book
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from shop_book
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.huatech.entity.ShopBookExample">
+        delete from shop_book
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.huatech.entity.ShopBook">
+    insert into shop_book (id, book_name, book_author, 
+      book_money, is_del, CREATED_BY, 
+      CREATED_TIME, UPDATED_BY, UPDATED_TIME, 
+      user_id)
+    values (#{id,jdbcType=VARCHAR}, #{bookName,jdbcType=VARCHAR}, #{bookAuthor,jdbcType=VARCHAR}, 
+      #{bookMoney,jdbcType=DOUBLE}, #{isDel,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{userId,jdbcType=LONGVARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.huatech.entity.ShopBook">
+        insert into shop_book
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="bookName != null">
+                book_name,
+            </if>
+            <if test="bookAuthor != null">
+                book_author,
+            </if>
+            <if test="bookMoney != null">
+                book_money,
+            </if>
+            <if test="isDel != null">
+                is_del,
+            </if>
+            <if test="createdBy != null">
+                CREATED_BY,
+            </if>
+                CREATED_TIME,
+            <if test="updatedBy != null">
+                UPDATED_BY,
+            </if>
+
+                UPDATED_TIME,
+
+            <if test="userId != null">
+                user_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="bookName != null">
+                #{bookName,jdbcType=VARCHAR},
+            </if>
+            <if test="bookAuthor != null">
+                #{bookAuthor,jdbcType=VARCHAR},
+            </if>
+            <if test="bookMoney != null">
+                #{bookMoney,jdbcType=DOUBLE},
+            </if>
+            <if test="isDel != null">
+                #{isDel,jdbcType=VARCHAR},
+            </if>
+            <if test="createdBy != null">
+                #{createdBy,jdbcType=VARCHAR},
+            </if>
+
+                now(),
+
+            <if test="updatedBy != null">
+                #{updatedBy,jdbcType=VARCHAR},
+            </if>
+
+                now(),
+            <if test="userId != null">
+                #{userId,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.huatech.entity.ShopBookExample" resultType="java.lang.Long">
+        select count(*) from shop_book
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update shop_book
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=VARCHAR},
+            </if>
+            <if test="record.bookName != null">
+                book_name = #{record.bookName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.bookAuthor != null">
+                book_author = #{record.bookAuthor,jdbcType=VARCHAR},
+            </if>
+            <if test="record.bookMoney != null">
+                book_money = #{record.bookMoney,jdbcType=DOUBLE},
+            </if>
+            <if test="record.isDel != null">
+                is_del = #{record.isDel,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createdBy != null">
+                CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createdTime != null">
+                CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updatedBy != null">
+                UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+            </if>
+            <if test="record.updatedTime != null">
+                UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.userId != null">
+                user_id = #{record.userId,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExampleWithBLOBs" parameterType="map">
+        update shop_book
+        set id = #{record.id,jdbcType=VARCHAR},
+        book_name = #{record.bookName,jdbcType=VARCHAR},
+        book_author = #{record.bookAuthor,jdbcType=VARCHAR},
+        book_money = #{record.bookMoney,jdbcType=DOUBLE},
+        is_del = #{record.isDel,jdbcType=VARCHAR},
+        CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+        CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+        UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+        UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+        user_id = #{record.userId,jdbcType=LONGVARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update shop_book
+        set id = #{record.id,jdbcType=VARCHAR},
+        book_name = #{record.bookName,jdbcType=VARCHAR},
+        book_author = #{record.bookAuthor,jdbcType=VARCHAR},
+        book_money = #{record.bookMoney,jdbcType=DOUBLE},
+        is_del = #{record.isDel,jdbcType=VARCHAR},
+        CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+        CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+        UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+        UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.huatech.entity.ShopBook">
+        update shop_book
+        <set>
+            <if test="bookName != null">
+                book_name = #{bookName,jdbcType=VARCHAR},
+            </if>
+            <if test="bookAuthor != null">
+                book_author = #{bookAuthor,jdbcType=VARCHAR},
+            </if>
+            <if test="bookMoney != null">
+                book_money = #{bookMoney,jdbcType=DOUBLE},
+            </if>
+            <if test="isDel != null">
+                is_del = #{isDel,jdbcType=VARCHAR},
+            </if>
+            <if test="createdBy != null">
+                CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createdTime != null">
+                CREATED_TIME = now(),
+            </if>
+            <if test="updatedBy != null">
+                UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+            </if>
+
+                UPDATED_TIME = now(),
+
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.huatech.entity.ShopBook">
+    update shop_book
+    set book_name = #{bookName,jdbcType=VARCHAR},
+      book_author = #{bookAuthor,jdbcType=VARCHAR},
+      book_money = #{bookMoney,jdbcType=DOUBLE},
+      is_del = #{isDel,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.huatech.entity.ShopBook">
+    update shop_book
+    set book_name = #{bookName,jdbcType=VARCHAR},
+      book_author = #{bookAuthor,jdbcType=VARCHAR},
+      book_money = #{bookMoney,jdbcType=DOUBLE},
+      is_del = #{isDel,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
