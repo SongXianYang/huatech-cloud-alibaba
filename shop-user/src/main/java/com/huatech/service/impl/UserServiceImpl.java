@@ -4,12 +4,14 @@ package com.huatech.service.impl;
 import com.huatech.annotation.Log;
 import com.huatech.entity.User;
 import com.huatech.mapper.IUserMapper;
+import com.huatech.response.Result;
 import com.huatech.service.IUserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -25,8 +27,11 @@ public class UserServiceImpl implements IUserService {
 
 
     @Override
-    public List<User> finds() {
-        return userMapper.selectList(null);
+    public Result<List<User>> finds() {
+        Result<List<User>> result = new Result<>();
+        List<User> users = userMapper.selectList(null);
+
+        return result.ok(Optional.ofNullable(users).orElse(null));
     }
 
     @Override
@@ -43,7 +48,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public List<User> UserIds() {
-        List<User> finds = finds();
+        List<User> finds = finds().getData();
         List<Integer> collect = finds.stream().map(User::getId).collect(Collectors.toList());
         log.info(collect);
         List<User> users = userMapper.UserIds(collect);

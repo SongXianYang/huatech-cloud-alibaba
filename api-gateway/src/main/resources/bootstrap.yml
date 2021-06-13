@@ -1,6 +1,6 @@
 spring:
   application:
-    name: user-shop
+    name: api-gateway
   cloud:
     nacos:
       config:
@@ -10,11 +10,7 @@ spring:
       discovery:
         server-addr: 127.0.0.1:8848
         namespace: 9704bb45-3e8b-479d-b491-f0f77765e2df
-  #        shared-dataids: config-all.yaml #全局配置引入
-#        refreshable-dataids: config-all.yaml #动态配置的刷新配置刷新
   profiles:
-    active: dev #标识环境
-  aop:
-    auto: true
+    active: dev
 
 

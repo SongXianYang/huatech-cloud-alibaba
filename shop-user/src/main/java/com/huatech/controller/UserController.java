@@ -2,6 +2,7 @@ package com.huatech.controller;
 
 import com.huatech.annotation.Log;
 import com.huatech.entity.User;
+import com.huatech.response.Result;
 import com.huatech.service.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -29,7 +30,7 @@ public class UserController {
     @Resource
     IUserService userService;
 
-    @Value("${config.name}")
+    @Value("${spring.application.name}")
     private String name;
 
     @Value("${config.env}")
@@ -37,7 +38,7 @@ public class UserController {
 
     @RequestMapping(value = "finds", method = RequestMethod.GET)
     @ApiOperation("查询用户集合")
-    public List<User> finds() {
+    public Result<List<User>> finds() {
         return userService.finds();
     }
 
@@ -96,9 +97,9 @@ public class UserController {
         return userService.update(user);
     }
 
-    @DeleteMapping("delete")
+    @PostMapping("delete")
     @ApiOperation("删除用户")
-    public String deleteIds(@RequestParam(value = "ids", required = false) List<Integer> ids) {
+    public String deleteIds(@RequestBody List<Integer> ids) {
         return userService.deleteIds(ids);
     }
 
