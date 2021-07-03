@@ -1,6 +1,10 @@
-# Project exclude paths
-/shop-common/target/
-/shop-order/target/
-/shop-product/target/
-/shop-user/target/
-附件是看理发师大家
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+!/test.html
