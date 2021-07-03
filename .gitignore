@@ -7,4 +7,9 @@
 *.iml
 out
 gen
-!/test.html
+*.html
+api-gateway/target/
+shop-common/target/
+shop-order/target/
+shop-product/target/
+shop-user/target/
