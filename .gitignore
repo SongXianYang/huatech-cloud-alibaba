@@ -13,4 +13,4 @@ shop-common/target/
 shop-order/target/
 shop-product/target/
 shop-user/target/
-/.gitignore
+my-activiti/target/
