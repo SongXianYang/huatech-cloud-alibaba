@@ -16,6 +16,7 @@
         <module>shop-order</module>
         <module>api-gateway</module>
         <module>my-activiti</module>
+        <module>activiti7_workflow</module>
     </modules>
     <!--父工程-->
     <parent>
