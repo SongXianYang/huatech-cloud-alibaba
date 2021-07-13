@@ -1,0 +1,14 @@
+server:
+  port: 20000
+spring:
+  datasource:
+    username: root
+    password: root#123
+    url: jdbc:mysql://127.0.0.1:3306/my_activiti?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC&nullCatalogMeansCurrent=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#    activiti 工作流 日志表 开启
+  activiti:
+    history-level: full
+    db-history-used: true
+#    取消自动部署
+    check-process-definitions: false
