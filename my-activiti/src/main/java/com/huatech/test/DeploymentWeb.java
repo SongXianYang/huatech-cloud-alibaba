@@ -30,11 +30,11 @@ public class DeploymentWeb {
     @GetMapping("BPMNDeployment")
     public String BPMNDeployment() {
 //        final String pngName="BPMN/Part1_Deployment.png";
-        final String fileName = "BPMN/Process_sxy_task.bpmn";
+        final String fileName = "BPMN/Process_uel_1.bpmn";
         Deployment deployment =  repositoryService.createDeployment()
                 .addClasspathResource(fileName)
 //                .addClasspathResource(pngName)
-                .name("测试请假流程")
+                .name("报销审批流程")
                 .deploy();
         return "SUCCESS";
     }

@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description: 任务表
@@ -55,12 +57,30 @@ public class TaskWeb {
         return "success";
     }
 
-    //执行完成任务
+    /**
+     * 执行完成任务
+     * @param id
+     * @return
+     */
     @GetMapping("completeTask/{id}")
     public String completeTask(@PathVariable("id") String id) {
 
         //当前任务表的id
         taskService.complete(id);
+        return "success";
+    }
+
+    /**
+     * 完成任务时：需要填写一些意见 或者 要提交申请的（钱）
+     * @param id
+     * @return
+     */
+    @GetMapping("completeTaskUel/{id}")
+    public String completeTaskUel(@PathVariable("id") String id) {
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("pay", "1000");
+        //当前任务表的id
+        taskService.complete(id,variables);
         return "success";
     }
 
