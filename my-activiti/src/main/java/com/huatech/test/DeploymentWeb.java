@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @description:
+ * @description: 部署
  * @author: SongXY
  * @create: 2021-07-12 21:07
  **/
@@ -29,11 +29,11 @@ public class DeploymentWeb {
     @ApiOperation("测试部署流程")
     @GetMapping("BPMNDeployment")
     public String BPMNDeployment() {
-        final String pngName="BPMN/Part1_Deployment.png";
-        final String fileName = "BPMN/Part1_Deployment.bpmn";
+//        final String pngName="BPMN/Part1_Deployment.png";
+        final String fileName = "BPMN/Process_sxy_task.bpmn";
         Deployment deployment =  repositoryService.createDeployment()
                 .addClasspathResource(fileName)
-                .addClasspathResource(pngName)
+//                .addClasspathResource(pngName)
                 .name("测试请假流程")
                 .deploy();
         return "SUCCESS";

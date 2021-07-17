@@ -35,7 +35,7 @@ public class ProcessInstanceWeb {
          *第一参数：act_re_procdef 表中key
          * 第二参数：业务表id（填写请假理由或者时间等表）
          */
-        runtimeService.startProcessInstanceByKey("myProcess_Part1", "业务表id");
+        runtimeService.startProcessInstanceByKey("Process_sxy_task", "业务丫丫id");
         return "success";
     }
 
