@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" expressionLanguage="http://www.w3.org/1999/XPath" id="m1596277021579" name="" targetNamespace="http://www.activiti.org/testm1596277021579" typeLanguage="http://www.w3.org/2001/XMLSchema">
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.activiti.org/testm1596277021579" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" expressionLanguage="http://www.w3.org/1999/XPath" id="m1596277021579" name="" targetNamespace="http://www.activiti.org/testm1596277021579" typeLanguage="http://www.w3.org/2001/XMLSchema">
   <process id="myProcess_ProcessRuntime" isClosed="false" isExecutable="true" processType="None">
     <startEvent id="_2" name="StartEvent"/>
     <endEvent id="_3" name="EndEvent"/>
-    <userTask activiti:assignee="bajie" activiti:exclusive="true" id="_4" name="八戒的pRuntime任务"/>
+    <userTask activiti:assignee="bajie" activiti:exclusive="true" id="_4" name="鍏垝鐨刾Runtime浠诲�?"/>
     <sequenceFlow id="_5" sourceRef="_2" targetRef="_4"/>
     <sequenceFlow id="_6" sourceRef="_4" targetRef="_3"/>
   </process>
@@ -22,21 +22,21 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_4" id="Shape-_4">
-        <dc:Bounds height="55.0" width="85.0" x="390.0" y="195.0"/>
+        <dc:Bounds height="55.0" width="85.0" x="110.0" y="120.0"/>
         <bpmndi:BPMNLabel>
           <dc:Bounds height="55.0" width="85.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="_5" id="BPMNEdge__5" sourceElement="_2" targetElement="_4">
-        <di:waypoint x="436.0" y="72.0"/>
-        <di:waypoint x="436.0" y="195.0"/>
+        <di:waypoint x="420.0" y="56.0"/>
+        <di:waypoint x="195.0" y="147.5"/>
         <bpmndi:BPMNLabel>
           <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_6" id="BPMNEdge__6" sourceElement="_4" targetElement="_3">
-        <di:waypoint x="460.0" y="250.0"/>
-        <di:waypoint x="460.0" y="330.0312805773287"/>
+        <di:waypoint x="195.0" y="147.5"/>
+        <di:waypoint x="445.0" y="346.0"/>
         <bpmndi:BPMNLabel>
           <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>

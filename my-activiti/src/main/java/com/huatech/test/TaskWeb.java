@@ -84,6 +84,21 @@ public class TaskWeb {
         return "success";
     }
 
+    /**
+     * 完成任务时：需要填写一些意见 或者 要提交申请的（钱）、直接指定候选人
+     * @param id
+     * @return
+     */
+    @GetMapping("completeTaskUel/{id}")
+    public String completeTaskCandidates(@PathVariable("id") String id) {
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("candidates", "bajie,wukong");
+        //当前任务表的id
+        //候选人多个人
+        taskService.complete(id,variables);
+        return "success";
+    }
+
     //拾取任务
     @GetMapping("claimTask/{id}/{name}")
 
