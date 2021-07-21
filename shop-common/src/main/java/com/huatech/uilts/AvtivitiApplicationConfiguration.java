@@ -37,10 +37,10 @@ public class AvtivitiApplicationConfiguration {
         InMemoryUserDetailsManager inMemoryUserDetailsManager = new InMemoryUserDetailsManager();
 
         String[][] usersGroupsAndRoles = {
-                {"bajie", "password", "ROLE_ACTIVITI_USER", "GROUP_activitiTeam"},
-                {"wukong", "password", "ROLE_ACTIVITI_USER", "GROUP_activitiTeam"},
-                {"shaseng", "password", "ROLE_ACTIVITI_USER", "GROUP_activitiTeam"},
-                {"tangseng", "password", "ROLE_ACTIVITI_USER", "GROUP_otherTeam"},
+                {"bajie", "123", "ROLE_ACTIVITI_USER", "GROUP_activitiTeam"},
+                {"wukong", "123", "ROLE_ACTIVITI_USER", "GROUP_activitiTeam"},
+                {"shaseng", "123", "ROLE_ACTIVITI_USER", "GROUP_activitiTeam"},
+                {"tangseng", "123", "ROLE_ACTIVITI_USER", "GROUP_otherTeam"},
                 {"system", "password", "ROLE_ACTIVITI_USER"},
                 {"admin", "password", "ROLE_ACTIVITI_ADMIN"},
         };

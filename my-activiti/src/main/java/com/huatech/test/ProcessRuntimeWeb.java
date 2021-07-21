@@ -3,6 +3,7 @@ package com.huatech.test;
 import com.huatech.uilts.SecurityUtil;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
+import org.activiti.api.model.shared.model.VariableInstance;
 import org.activiti.api.process.model.ProcessInstance;
 import org.activiti.api.process.model.builders.ProcessPayloadBuilder;
 import org.activiti.api.process.runtime.ProcessRuntime;
@@ -35,13 +36,15 @@ public class ProcessRuntimeWeb {
     /**
      * 启动流程实例
      */
-    @GetMapping("start")
-    public String start() {
+    @GetMapping("start/{id}")
+    public String start(@PathVariable("id") String id) {
         processRuntime.start(ProcessPayloadBuilder.start()
-                .withName("测试新特性启动流程实例")
+                .withName("测试新特性启动流程实例_21212121")
                 .withBusinessKey("新特性id")
-                .withProcessDefinitionId("")
-                .withProcessDefinitionKey("")
+                //流程定义id启动
+                .withProcessDefinitionId(id)
+                //流程定义的key来启动
+//                .withProcessDefinitionKey("")
                 .build());
         return "启动成功";
     }
@@ -52,7 +55,7 @@ public class ProcessRuntimeWeb {
     @GetMapping("pageList/{name}")
     public String pageList(@PathVariable("name") String name) {
         securityUtil.logInAs(name);
-        Order order = new Order("fsfs");
+        Order order = new Order("DESC");
         Page<ProcessInstance> page = processRuntime.processInstances(Pageable.of(0, 100, order));
         List<ProcessInstance> list = page.getContent();
         for (ProcessInstance pi : list) {
@@ -67,6 +70,51 @@ public class ProcessRuntimeWeb {
         return "查询成功";
     }
     /**
-     * 也可以查询流程定义
+     * 也可以通过流程定义查询
      */
+
+    /**
+     * 删除流程实例
+     */
+    @GetMapping("delete/{id}")
+    public String delete(@PathVariable("id") String id) {
+        //参数流程实例id
+        processRuntime.delete(ProcessPayloadBuilder.delete(id));
+        return "删除成功！";
+    }
+
+    /**
+     * 挂起流程(停止流程）
+     */
+    @GetMapping("suspend/{id}")
+    public String suspend(@PathVariable("id") String id) {
+        //参数：流程实例id
+        processRuntime.suspend(ProcessPayloadBuilder.suspend(id));
+        return "停止流程成功";
+    }
+    /**
+     * 激活流程实例（恢复流程）
+     */
+    @GetMapping("resume/{id}")
+    public String resume(@PathVariable("id") String id) {
+        //参数：流程实例id
+        processRuntime.resume(ProcessPayloadBuilder.resume(id));
+        return "恢复流程成功";
+    }
+    /**
+     * 获取流程实例参数
+     */
+    @GetMapping("getVariables/{id}")
+    public String getVariables(@PathVariable("id") String id) {
+        //参数：流程实例id
+        List<VariableInstance> list = processRuntime.variables(ProcessPayloadBuilder.variables().withProcessInstanceId(id).build());
+        for(VariableInstance vi : list){
+            System.out.println("-------------------");
+            System.out.println("getName：" + vi.getName());
+            System.out.println("getValue：" + vi.getValue());
+            System.out.println("getTaskId：" + vi.getTaskId());
+            System.out.println("getProcessInstanceId：" + vi.getProcessInstanceId());
+        }
+        return "获取流程实例参数成功";
+    }
 }
