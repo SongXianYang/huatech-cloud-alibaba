@@ -1,7 +1,9 @@
 package com.huatech.uilts;
+
 import static java.util.Arrays.asList;
 
 import java.util.Arrays;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +17,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 /**
  * @description:
  * @author: SongXY
@@ -34,10 +37,10 @@ public class AvtivitiApplicationConfiguration {
         InMemoryUserDetailsManager inMemoryUserDetailsManager = new InMemoryUserDetailsManager();
 
         String[][] usersGroupsAndRoles = {
-                {"bob", "password", "ROLE_ACTIVITI_USER", "GROUP_activitiTeam"},
-                {"john", "password", "ROLE_ACTIVITI_USER", "GROUP_activitiTeam"},
-                {"hannah", "password", "ROLE_ACTIVITI_USER", "GROUP_activitiTeam"},
-                {"other", "password", "ROLE_ACTIVITI_USER", "GROUP_otherTeam"},
+                {"bajie", "password", "ROLE_ACTIVITI_USER", "GROUP_activitiTeam"},
+                {"wukong", "password", "ROLE_ACTIVITI_USER", "GROUP_activitiTeam"},
+                {"shaseng", "password", "ROLE_ACTIVITI_USER", "GROUP_activitiTeam"},
+                {"tangseng", "password", "ROLE_ACTIVITI_USER", "GROUP_otherTeam"},
                 {"system", "password", "ROLE_ACTIVITI_USER"},
                 {"admin", "password", "ROLE_ACTIVITI_ADMIN"},
         };

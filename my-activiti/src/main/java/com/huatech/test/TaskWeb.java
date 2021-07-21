@@ -75,7 +75,7 @@ public class TaskWeb {
      * @param id
      * @return
      */
-    @GetMapping("completeTaskUel/{id}")
+    @GetMapping("completeTaskUel1/{id}")
     public String completeTaskUel(@PathVariable("id") String id) {
         Map<String, Object> variables = new HashMap<>();
         variables.put("pay", "1000");
