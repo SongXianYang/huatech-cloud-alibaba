@@ -30,4 +30,6 @@ public interface IUserService {
     String deleteIds(List<Integer> ids);
 
     int saveTime(int id);
+
+    List<User> selectUserByInName(List<String> names);
 }

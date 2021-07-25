@@ -42,7 +42,7 @@ public class AvtivitiApplicationConfiguration {
                 {"shaseng", "123", "ROLE_ACTIVITI_USER", "GROUP_activitiTeam"},
                 {"tangseng", "123", "ROLE_ACTIVITI_USER", "GROUP_otherTeam"},
                 {"system", "password", "ROLE_ACTIVITI_USER"},
-                {"admin", "password", "ROLE_ACTIVITI_ADMIN"},
+                {"admin", "password", "ROLE_ACTIVITI_USER", "GROUP_otherTeam"},
         };
 
         for (String[] user : usersGroupsAndRoles) {

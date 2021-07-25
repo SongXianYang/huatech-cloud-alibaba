@@ -22,4 +22,6 @@ public interface IUserMapper extends BaseMapper<User> {
 
 
     int  saveTime(@Param("id") int id);
+
+    List<User> selectUserByInName(List<String> names);
 }

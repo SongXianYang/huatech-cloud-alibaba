@@ -24,23 +24,22 @@ public class Part9_TaskRuntime {
     public void getTasks() {
         securityUtil.logInAs("wukong");
 
-        Page<Task> tasks = taskRuntime.tasks(Pageable.of(0,100));
-        List<Task> list=tasks.getContent();
-        for(Task tk : list){
+        Page<Task> tasks = taskRuntime.tasks(Pageable.of(0, 100));
+        List<Task> list = tasks.getContent();
+        for (Task tk : list) {
             System.out.println("-------------------");
-            System.out.println("getId："+ tk.getId());
-            System.out.println("getName："+ tk.getName());
-            System.out.println("getStatus："+ tk.getStatus());
-            System.out.println("getCreatedDate："+ tk.getCreatedDate());
-            if(tk.getAssignee() == null){
+            System.out.println("getId：" + tk.getId());
+            System.out.println("getName：" + tk.getName());
+            System.out.println("getStatus：" + tk.getStatus());
+            System.out.println("getCreatedDate：" + tk.getCreatedDate());
+            if (tk.getAssignee() == null) {
                 //候选人为当前登录用户，null的时候需要前端拾取
                 System.out.println("Assignee：待拾取任务");
-            }else{
-                System.out.println("Assignee："+ tk.getAssignee());
+            } else {
+                System.out.println("Assignee：" + tk.getAssignee());
             }
 
         }
-
 
 
     }
@@ -50,15 +49,16 @@ public class Part9_TaskRuntime {
     public void completeTask() {
         securityUtil.logInAs("wukong");
         Task task = taskRuntime.task("db9c5f80-d3ae-11ea-99e8-dcfb4875e032");
-        if(task.getAssignee() == null){
+        if (task.getAssignee() == null) {
             taskRuntime.claim(TaskPayloadBuilder.claim()
-            .withTaskId(task.getId())
-            .build());
+                    
+                    .withTaskId(task.getId())
+                    .build());
         }
         taskRuntime.complete(TaskPayloadBuilder
                 .complete()
-        .withTaskId(task.getId())
-        .build());
+                .withTaskId(task.getId())
+                .build());
         System.out.println("任务执行完成");
     }
 }

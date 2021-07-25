@@ -34,6 +34,17 @@
             </foreach>
         </if>
     </select>
+    <select id="selectUserByInName" resultType="com.huatech.entity.User">
+        select * from shop_user
+        <where>
+            <if test="names !=null and names.size>0">
+                and username in
+                <foreach collection="names" index="index" open = '(' separator = ',' close = ')' item="item">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
 
 
 </mapper>

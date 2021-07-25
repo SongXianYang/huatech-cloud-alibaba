@@ -43,6 +43,7 @@ public class ProcessRuntimeWeb {
                 .withBusinessKey("新特性id")
                 //流程定义id启动
                 .withProcessDefinitionId(id)
+                .withVariable("nameExecutor","bajie")
                 //流程定义的key来启动
 //                .withProcessDefinitionKey("")
                 .build());

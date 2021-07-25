@@ -14,6 +14,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -115,7 +116,7 @@ public class UserController {
     @ApiOperation("测试更新时间")
     public String save(int id) {
         try {
-           int i= userService.saveTime(id);
+            int i = userService.saveTime(id);
             if (i > 0) {
                 return "更新成功";
             }
@@ -125,5 +126,15 @@ public class UserController {
             log.error("save: ", e);
             throw e;
         }
+    }
+
+    @GetMapping("selectUserByInName")
+    @ApiOperation("多个用户名查用户")
+    public List<User> selectUserByInName() {
+        List<String> names = new ArrayList<>();
+//        names.add("胎菊");
+//        names.add("小石");
+//        names.add("");
+        return userService.selectUserByInName(names);
     }
 }

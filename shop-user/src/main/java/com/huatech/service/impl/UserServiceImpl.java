@@ -89,4 +89,10 @@ public class UserServiceImpl implements IUserService {
     public int saveTime(int id) {
         return userMapper.saveTime(id);
     }
+
+    @Override
+    public List<User> selectUserByInName(List<String> names) {
+
+        return userMapper.selectUserByInName(names);
+    }
 }
