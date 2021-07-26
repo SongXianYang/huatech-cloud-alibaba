@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  * @author: SongXY
  * @create: 2021-07-19 23:04
  **/
-@Configuration
+//@Configuration
 public class AvtivitiApplicationConfiguration {
     private Logger logger;
 

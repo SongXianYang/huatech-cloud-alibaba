@@ -12,3 +12,11 @@ spring:
     db-history-used: true
 #    取消自动部署
     check-process-definitions: false
+  main:
+    allow-bean-definition-overriding: true
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  #\u6253\u5370\u65E5\u5FD7
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  #打印mybatis plus 日志
