@@ -21,7 +21,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         boolean hasGetter = metaObject.hasGetter("createTime");
         if (hasGetter) {
             log.info("insertFill: 插入默认时间");
-            this.strictInsertFill(metaObject, "createTime", Date.class, new Date());
+//            this.strictInsertFill(metaObject, "createTime", Date.class, new Date());
         }
     }
 
@@ -32,7 +32,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         //如果等于null我们就自动填充上更新时间
         if (fieldValByName == null) {
             log.info("updateFill: 更新默认时间");
-            this.strictUpdateFill(metaObject, "updateTime", Date.class, new Date());
+//            this.strictUpdateFill(metaObject, "updateTime", Date.class, new Date());
         }
     }
 }

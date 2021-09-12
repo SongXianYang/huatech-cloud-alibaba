@@ -18,6 +18,8 @@ import javax.annotation.Resource;
 public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
     @Resource
     private MyAuthenticationSuccessHandler successHandler;
+    @Resource
+    private MyAuthenticationFailureHandler failureHandler;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         log.info("configure: 登录成功");
@@ -26,7 +28,7 @@ public class MyWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter
                 .loginPage("/login")
                 //登录成功相应给前台的内容
                 .successHandler(successHandler)
-//                .failureHandler(successHandler)
+                .failureHandler(failureHandler)
                 .and()
                 .authorizeRequests()
                 .anyRequest().permitAll()

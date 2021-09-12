@@ -8,6 +8,7 @@ import com.huatech.response.Result;
 import com.huatech.service.IUserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
